@@ -10,9 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.LinkedHashSet;
 import java.util.Objects;
-import java.util.Set;
 
 /*  할일 : Lombok 사용하기
   ** 주의 : maven 때와 같은 방식인 것들도 이름이 다르게 되어있으니 헷갈리지않게 주의할 것
@@ -40,7 +38,7 @@ import java.util.Set;
 @Entity /* 1. Lombok 을 이용해서 클래스를 엔티티로 변경 */
 @Getter /* 2. Lombok 을 이용해서 @Getter 를 사용하면 알아서 모든 필드의 getter 가 생성된다 */
 @ToString /* 2. Lombok 을 이용해서 @ToString 를 사용하면 알아서 모든 필드의 toString 가 생성된다 */
-public class Article {
+public class Ex01_1_Article_엔티티로_변경 {
 
     @Id // 전체 필드중에서 어떤 필드가 PK 인지 선언하는것. 이 부분이 없으면 @Entity 에서 에러 발생한다. @Entity 가 붙은 클래스는 JPA 가 관리하게 된다.
     //기본 키(PK)가 무엇인지 알려줘야 작동한다. 그것이 @ID 어노테이션이다. (@GeneratedValue 이 두개는 한세트라고 생각해야한다)
@@ -52,9 +50,9 @@ public class Article {
     id 와 메타데이터의 경우는 내가 부여하는것이 아니라 JPA 에서 자동으로 부여하는 번호이다.
     메타 데이터들도 자동으로 JPA 가 세팅하게 만들어야 한다. 그래서 id 와 메타데이터는 @Setter 가 필요없다. @Setter 의 경우는 지금처럼 필요한 필드에만 사용할 것을 권장한다.
 */
-    
+
 /*  @Column : 해당 컬럼이 not null 인 경우 nullable = false 사용 (기본값은 true 이다)
-    @Column 을 아예 안쓰면 null 이다. 
+    @Column 을 아예 안쓰면 null 이다.
     @Column(name="DESC", nullable=false, length=512) 생략 가능하다 길이 숫자 안쓰면 기본값 255 자동 적용
 */
     @Setter @Column(nullable = false) private String title; //제목
@@ -62,29 +60,7 @@ public class Article {
     @Setter private String hashtag; //해시태그
 
     /*  양방향 바인딩 (Article - ArticleComment)
-
     */
-    @OrderBy("id") // 양방향 바인딩을 할것인데 정렬기준을 id로 하겠다는 의미
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
-
-    @ToString.Exclude /******겁나 중요*****
-    맨위에 @ToString 이 있는데 마우스 호버하면 '@ToString includes ~ lazy load 어쩌구
-    퍼포먼스 / 메모리 저하를 일으킬 수 있어 성능적으로 안좋은 영향을 준다
-    해당 필드를 가려주세요 하는 역할.*/
-    private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
-    /********더 겁나 중요  ******
-     @ToString.Exclude 안하면 순환참고 이슈가 발생 할 수 있다(터질 수 있다.)
-     여기서 toString 이 id, title, content, hashtag 들을 다찍고
-     Set<ArticleComment> 부분을 찍으려고 ArticleComment.java 파일에 가서 거기에 있는
-     @ToString 이 원소들 다 찍으려고 하면서 원소들 중에 private Article article; 을 보는순간
-     다시 Article 의 @ToString 이 동작하면서 또 모든 원소들을 찍으려고 하고, 그러다가 다시
-     Set<ArticleComment>를 보고 또 ArticleComment 로가서 toString 돌리고
-     .... 이런 방식으로 동작하게 되면서 메모리가 터질 수 있다.
-     따라서 Set<ArticleComment> 에 @ToString.Exclude 를 달아준다.
-
-     ArticleComment 에 걸지 않고 Article 에 걸어주는 이유는 댓글이 글을 참조하는건 정상적 경우인데
-     글이 댓글을 참조하는것은 일반적인 경우는 아니기 때문에 Article 에 exclude 를 걸어준다.
-     */
 
 
 
@@ -126,19 +102,19 @@ public class Article {
      * 퍼블릭 또는 프로텍티드만 가능한데 평생 아무데서도 기본생성자를 안쓰이게 하고싶어 protected 로 변경하였다
      * public(제한 X) > protected(동일 패키지 내 또는 파생 클래스) > default(동일한 패키지 내) > private(자기자신의 클래스 내)
     */
-    protected Article() { }
+    protected Ex01_1_Article_엔티티로_변경() { }
 
     /*  사용자가 입력하는 값만 받기. 나머지는 시스템이 다 알아서 하게 해주면 된다.
     */
-    private Article(String title, String content, String hashtag) {
+    private Ex01_1_Article_엔티티로_변경(String title, String content, String hashtag) {
         this.title = title;
         this.content = content;
         this.hashtag = hashtag;
     }
 
-    public static Article of(String title, String content, String hashtag){
+    public static Ex01_1_Article_엔티티로_변경 of(String title, String content, String hashtag){
 
-        return new Article(title, content, hashtag);
+        return new Ex01_1_Article_엔티티로_변경(title, content, hashtag);
     }
     /** 정적 팩토리 메서드 (factory method pattern 중에 하나이다)
      *  객체 생성의 역할을 하는 클래스 메서드 라는 의미이다.
@@ -171,7 +147,7 @@ public class Article {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Article article = (Article) o;
+        Ex01_1_Article_엔티티로_변경 article = (Ex01_1_Article_엔티티로_변경) o;
         return id.equals(article.id);
         // 다른 방법들
 //        return (article.id).equals(id);

@@ -34,14 +34,12 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 @Entity
-public class ArticleComment {
+public class Ex01_2_ArticleComment_엔티티로_변경 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter
-    @ManyToOne(optional = false)
-    private Article article; // Article 파일에 내용을 여기에 넣는 작업 article.id 이런식으로 가져다 쓸 수 있다
+    @Setter @ManyToOne(optional = false) private Article article; // Article 파일에 내용을 여기에 넣는 작업 article.id 이런식으로 가져다 쓸 수 있다
 //    @Setter @Column(nullable = false) private Long articleId;
     /*  연관 관계 매핑
     연관 관계 없이 만든다면 -> private Long articleId; 이런식으로(관계형 데이터베이스 스타일) 하면 되지만
