@@ -17,8 +17,8 @@ import java.util.Set;
 @Table(indexes = {
         @Index(columnList = "title"),
         @Index(columnList = "hashtag"),
-        @Index(columnList = "createdAt"),
-        @Index(columnList = "createdBy")
+        @Index(columnList = "created_at"),
+        @Index(columnList = "created_by")
 })
 @Entity
 @Getter
@@ -43,17 +43,17 @@ public class Article {
 
     @CreatedDate
     @Column(nullable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime created_at;
 
     @CreatedBy
     @Column(nullable = false, length = 100)
-    private String createdBy;
+    private String created_by;
 
     @LastModifiedDate
-    @Column(nullable = false) private LocalDateTime modifiedAt;
+    @Column(nullable = false) private LocalDateTime modified_at;
 
     @LastModifiedBy
-    @Column(nullable = false, length = 100) private String modifiedBy;
+    @Column(nullable = false, length = 100) private String modified_by;
 
 
 

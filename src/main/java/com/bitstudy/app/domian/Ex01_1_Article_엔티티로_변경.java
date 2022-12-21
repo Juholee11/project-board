@@ -21,6 +21,10 @@ import java.util.Objects;
     3. 동등성. 동일성 비교할 수 있는 코드 넣어보기
     * 여기는 DB 만드는거임
 
+    JPA 란? 자바 ORM 기술 표준
+    Entity 를 분석, crate 구문이나 insert 같은 sql 쿼리를 생성해준다.
+    JDBC API 넣어주면 DB 접근도 해주고 객체와 테이블을 매핑해준다.
+    *
 */
 
 /* @Table : 엔티티와 매핑할 정보를 지정하고,
@@ -32,8 +36,8 @@ import java.util.Objects;
 @Table(indexes = {
         @Index(columnList = "title"),
         @Index(columnList = "hashtag"),
-        @Index(columnList = "createdAt"),
-        @Index(columnList = "createdBy")
+        @Index(columnList = "created_at"),
+        @Index(columnList = "created_by")
 })
 @Entity /* 1. Lombok 을 이용해서 클래스를 엔티티로 변경 */
 @Getter /* 2. Lombok 을 이용해서 @Getter 를 사용하면 알아서 모든 필드의 getter 가 생성된다 */
@@ -76,19 +80,19 @@ public class Ex01_1_Article_엔티티로_변경 {
     //메타데이터(개발자가 보는 데이터를 의미)
     @CreatedDate
     @Column(nullable = false)
-    private LocalDateTime createdAt; //생성일시
+    private LocalDateTime created_at; //생성일시
 
     @CreatedBy
     @Column(nullable = false, length = 100)
-    private String createdBy; // 생성자 JpaConfig 사용 ( " bitstudy ") > 로그인 페이지를 하직 구현 하지 않았기 때문에 사용
+    private String created_by; // 생성자 JpaConfig 사용 ( " bitstudy ") > 로그인 페이지를 하직 구현 하지 않았기 때문에 사용
     // 다른 생성일 시 같은것들은 알아낼 수 있지만 최초 생성자는 (현재코드상태)인증 받고 오지 않았기 때문에 따로 알아낼 수 없다.
     // 이때 아까만든 jpaConfig 파일을 사용한다( " bitstudy ")
 
     @LastModifiedDate
-    @Column(nullable = false) private LocalDateTime modifiedAt; // 수정일시
+    @Column(nullable = false) private LocalDateTime modified_at; // 수정일시
 
     @LastModifiedBy
-    @Column(nullable = false, length = 100) private String modifiedBy; // 수정자 JpaConfig 사용 (" bitstudy ")
+    @Column(nullable = false, length = 100) private String modified_by; // 수정자 JpaConfig 사용 (" bitstudy ")
 
     /*  위와 같이 어노테이션을 붙여주기만 하면 audititng 이 작동한다.
         @CreatedDate : 최초에 insert 할때 자동으로 한번 넣어준다.

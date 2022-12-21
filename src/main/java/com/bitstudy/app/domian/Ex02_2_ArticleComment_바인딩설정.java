@@ -28,8 +28,8 @@ import java.time.LocalDateTime;
 */
 @Table(indexes = {
         @Index(columnList = "content"),
-        @Index(columnList = "createdAt"),
-        @Index(columnList = "createdBy")
+        @Index(columnList = "created_at"),
+        @Index(columnList = "created_by")
 })
 @Getter
 @ToString
@@ -58,14 +58,14 @@ public class Ex02_2_ArticleComment_바인딩설정 {
 
     //메타데이터(개발자가 보는 데이터를 의미
     @CreatedDate
-    @Column(nullable = false) private LocalDateTime createdAt; //생성일시
+    @Column(nullable = false) private LocalDateTime created_at; //생성일시
 
     @CreatedBy
-    @Column(nullable = false, length = 100)private String createdBy; // 생성자
+    @Column(nullable = false, length = 100)private String created_by; // 생성자
 
     @LastModifiedDate
-    @Column(nullable = false)private LocalDateTime modifiedAt; // 수정일시
+    @Column(nullable = false)private LocalDateTime modified_at; // 수정일시
 
     @LastModifiedBy
-    @Column(nullable = false, length = 100)private String modifiedBy; // 수정자
+    @Column(nullable = false, length = 100)private String modified_by; // 수정자
 }

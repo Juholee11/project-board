@@ -34,8 +34,8 @@ import java.util.Set;
 @Table(indexes = {
         @Index(columnList = "title"),
         @Index(columnList = "hashtag"),
-        @Index(columnList = "createdAt"),
-        @Index(columnList = "createdBy")
+        @Index(columnList = "created_at"),
+        @Index(columnList = "created_by")
 })
 @Entity /* 1. Lombok 을 이용해서 클래스를 엔티티로 변경 */
 @Getter /* 2. Lombok 을 이용해서 @Getter 를 사용하면 알아서 모든 필드의 getter 가 생성된다 */
@@ -100,19 +100,19 @@ public class Ex02_1_Article_바인딩설정 {
     //메타데이터(개발자가 보는 데이터를 의미)
     @CreatedDate
     @Column(nullable = false)
-    private LocalDateTime createdAt; //생성일시
+    private LocalDateTime created_at; //생성일시
 
     @CreatedBy
     @Column(nullable = false, length = 100)
-    private String createdBy; // 생성자 JpaConfig 사용 ( " bitstudy ") > 로그인 페이지를 하직 구현 하지 않았기 때문에 사용
+    private String created_by; // 생성자 JpaConfig 사용 ( " bitstudy ") > 로그인 페이지를 하직 구현 하지 않았기 때문에 사용
     // 다른 생성일 시 같은것들은 알아낼 수 있지만 최초 생성자는 (현재코드상태)인증 받고 오지 않았기 때문에 따로 알아낼 수 없다.
     // 이때 아까만든 jpaConfig 파일을 사용한다( " bitstudy ")
 
     @LastModifiedDate
-    @Column(nullable = false) private LocalDateTime modifiedAt; // 수정일시
+    @Column(nullable = false) private LocalDateTime modified_at; // 수정일시
 
     @LastModifiedBy
-    @Column(nullable = false, length = 100) private String modifiedBy; // 수정자 JpaConfig 사용 (" bitstudy ")
+    @Column(nullable = false, length = 100) private String modified_by; // 수정자 JpaConfig 사용 (" bitstudy ")
 
     /*  위와 같이 어노테이션을 붙여주기만 하면 audititng 이 작동한다.
         @CreatedDate : 최초에 insert 할때 자동으로 한번 넣어준다.
