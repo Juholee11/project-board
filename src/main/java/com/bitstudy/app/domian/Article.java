@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
+@EntityListeners(AuditingEntityListener.class) // 이거 없으면 테스트할때 created_at 때문에 에러발생(Ex04파일)
 @Table(indexes = {
         @Index(columnList = "title"),
         @Index(columnList = "hashtag"),
