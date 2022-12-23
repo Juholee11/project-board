@@ -51,15 +51,15 @@ public class ArticleComment {
 
 
     //메타데이터(개발자가 보는 데이터를 의미
-    @CreatedDate
-    @Column(nullable = false) private LocalDateTime created_at; //생성일시
-
-    @CreatedBy
-    @Column(nullable = false, length = 100)private String created_by; // 생성자
-
-    @LastModifiedDate
-    @Column(nullable = false)private LocalDateTime modified_at; // 수정일시
-
-    @LastModifiedBy
-    @Column(nullable = false, length = 100)private String modified_by; // 수정자
+//    @CreatedDate
+//    @Column(nullable = false) private LocalDateTime created_at; //생성일시
+//
+//    @CreatedBy
+//    @Column(nullable = false, length = 100)private String created_by; // 생성자
+//
+//    @LastModifiedDate
+//    @Column(nullable = false)private LocalDateTime modified_at; // 수정일시
+//
+//    @LastModifiedBy
+//    @Column(nullable = false, length = 100)private String modified_by; // 수정자
 }
