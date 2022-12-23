@@ -3,13 +3,8 @@ package com.bitstudy.app.domian;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 /*  할일 : Lombok 사용하기
   ** 주의 : maven 때와 같은 방식인 것들도 이름이 다르게 되어있으니 헷갈리지않게 주의할 것
@@ -34,7 +29,7 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 @Entity
-public class ArticleComment extends AuditingFields {
+public class Ex06_2_ArticleComment_공통필드_분리하기 extends AuditingFields {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
