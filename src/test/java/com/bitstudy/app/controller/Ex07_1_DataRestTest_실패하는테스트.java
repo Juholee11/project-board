@@ -6,11 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -41,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                              테스트 코드 내에서 Mock 서버를 띄울 수 있다.(response, request 에 대한 사전 정의가 가능)
  */
 @WebMvcTest
-public class DataRestTest {
+public class Ex07_1_DataRestTest_실패하는테스트 {
     /** MockMvc 테스트 방법
      1. MockMvc 생성(빈 준비)
      2. MovkMvc 에게 요청에 대한 정보를 입력(주입)
@@ -51,7 +48,7 @@ public class DataRestTest {
     private final MockMvc mvc;          //1. MockMvc 생성(빈 준비)
 
 
-    public DataRestTest(@Autowired MockMvc mvc) {  //2. MovkMvc 에게 요청에 대한 정보를 입력(주입)
+    public Ex07_1_DataRestTest_실패하는테스트(@Autowired MockMvc mvc) {  //2. MovkMvc 에게 요청에 대한 정보를 입력(주입)
         this.mvc = mvc;
     }
 
