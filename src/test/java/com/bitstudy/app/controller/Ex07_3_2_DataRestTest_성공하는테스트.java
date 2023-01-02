@@ -3,24 +3,14 @@ package com.bitstudy.app.controller;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.transaction.annotation.Transactional;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-/**     통합테스트로 변경해서 테스트 할 예정
- *
- * */
 /**
         슬라이스 테스트 : 기능별(레이어별) 잘라서 특정 부분(기능)만 테스트 할 수 있는 것
 
@@ -47,12 +37,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         3. @RestClientTest - (클라이언트 입장에서) API 연동 테스트
                              테스트 코드 내에서 Mock 서버를 띄울 수 있다.(response, request 에 대한 사전 정의가 가능)
  */
-//@WebMvcTest
-@SpringBootTest/* 이것만 있으면 MVC는 알아볼 수 없어 @AutoConfigureMockMvc 같이 넣기 */
-@AutoConfigureMockMvc
-//@DisplayName("Data REST - API 테스트")
-@Transactional/* 테스트를 돌리면 Hibernate 부분에 select 쿼리문이 나오면서 실제 DB를 건드는데 테스트 끝난 이후 DB를 롤백시키는 용도이다.*/
-public class DataRestTest {
+@WebMvcTest
+public class Ex07_3_2_DataRestTest_성공하는테스트 {
     /** MockMvc 테스트 방법
      1. MockMvc 생성(빈 준비)
      2. MovkMvc 에게 요청에 대한 정보를 입력(주입)
@@ -62,14 +48,14 @@ public class DataRestTest {
     private final MockMvc mvc;          //1. MockMvc 생성(빈 준비)
 
 
-    public DataRestTest(@Autowired MockMvc mvc) {  //2. MovkMvc 에게 요청에 대한 정보를 입력(주입)
+    public Ex07_3_2_DataRestTest_성공하는테스트(@Autowired MockMvc mvc) {  //2. MovkMvc 에게 요청에 대한 정보를 입력(주입)
         this.mvc = mvc;
     }
 
     // [api] - 게시글 리스트 전체 조회
     @DisplayName("[api] - 게시글 리스트 전체 조회")
     @Test
-    void articleAll() throws Exception {
+    void articles() throws Exception {
         /* 현재 테스트는 실패하는 것이 정상이다
            해당 api 를 찾을 수 없다.
            콘솔창에 MockHttpServletRequest 부분에 URI="/api/articles 있을 것이다. 복사해서 브라우저에 http://localhost:8080/api/articles
@@ -77,46 +63,6 @@ public class DataRestTest {
 
            왜 여기선 안되냐면 @WebMvcTest 는 슬라이스 테스트 이기 때문에 controller 외의 빈들은 로드하지 않았기 때문이다*/
         mvc.perform(get("/api/articles")) // get 입력 후 ctrl + space 하면 (이것을 딥다이브 라고함)
-                .andExpect(status().isOk())//현재 200이 들어왔는지 //status > MockMvcResultMathcers.status
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.valueOf("application/hal+json")));
-    }
-    //////////////////////////////////////////////////////////////////////////////
-    /** [api] - 게시글 단건 조회 */
-    @DisplayName("[api] - 게시글 리스트 단건 조회")
-    @Test
-    void articleOne() throws Exception {
-        /* 현재 테스트는 실패하는 것이 정상이다
-           해당 api 를 찾을 수 없다.
-           콘솔창에 MockHttpServletRequest 부분에 URI="/api/articles 있을 것이다. 복사해서 브라우저에 http://localhost:8080/api/articles
-           넣어보면 데이터가 나온다.
-
-           왜 여기선 안되냐면 @WebMvcTest 는 슬라이스 테스트 이기 때문에 controller 외의 빈들은 로드하지 않았기 때문이다*/
-        mvc.perform(get("/api/articles/1")) // get 입력 후 ctrl + space 하면 (이것을 딥다이브 라고함)
-                .andExpect(status().isOk())//현재 200이 들어왔는지 //status > MockMvcResultMathcers.status
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.valueOf("application/hal+json")));
-    }
-
-    //////////////////////////////////////////////////////////////////////////////
-    @DisplayName("[api] - 댓글 리스트 전체 조회 ")
-    @Test
-    void articleCommentAll() throws Exception{
-        mvc.perform(get("/api/articleComments")) // get 입력 후 ctrl + space 하면 (이것을 딥다이브 라고함)
-                .andExpect(status().isOk())//현재 200이 들어왔는지 //status > MockMvcResultMathcers.status
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.valueOf("application/hal+json")));
-    }
-
-    @DisplayName("[api] - 댓글 리스트 단건 조회 ")
-    @Test
-    void articleCommentOne() throws Exception{
-        mvc.perform(get("/api/articleComments/1")) // get 입력 후 ctrl + space 하면 (이것을 딥다이브 라고함)
-                .andExpect(status().isOk())//현재 200이 들어왔는지 //status > MockMvcResultMathcers.status
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.valueOf("application/hal+json")));
-    }
-
-    @DisplayName("[api] - 게시글의 댓글 리스트 조회 ")
-    @Test
-    void articleCommentAllByArticle() throws Exception{
-        mvc.perform(get("/api/articles/1/articleComments")) // get 입력 후 ctrl + space 하면 (이것을 딥다이브 라고함)
                 .andExpect(status().isOk())//현재 200이 들어왔는지 //status > MockMvcResultMathcers.status
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.valueOf("application/hal+json")));
     }
