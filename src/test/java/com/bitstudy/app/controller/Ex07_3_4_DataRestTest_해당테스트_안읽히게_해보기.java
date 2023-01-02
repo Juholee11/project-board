@@ -5,16 +5,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -22,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**     통합테스트로 변경해서 테스트 할 예정
  *
  * */
+
 /**
         슬라이스 테스트 : 기능별(레이어별) 잘라서 특정 부분(기능)만 테스트 할 수 있는 것
 
@@ -55,7 +52,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 //@DisplayName("Data REST - API 테스트")
 @Transactional/* 테스트를 돌리면 Hibernate 부분에 select 쿼리문이 나오면서 실제 DB를 건드는데 테스트 끝난 이후 DB를 롤백시키는 용도이다.*/
-public class DataRestTest {
+public class Ex07_3_4_DataRestTest_해당테스트_안읽히게_해보기 {
     /** MockMvc 테스트 방법
      1. MockMvc 생성(빈 준비)
      2. MovkMvc 에게 요청에 대한 정보를 입력(주입)
@@ -65,7 +62,7 @@ public class DataRestTest {
     private final MockMvc mvc;          //1. MockMvc 생성(빈 준비)
 
 
-    public DataRestTest(@Autowired MockMvc mvc) {  //2. MovkMvc 에게 요청에 대한 정보를 입력(주입)
+    public Ex07_3_4_DataRestTest_해당테스트_안읽히게_해보기(@Autowired MockMvc mvc) {  //2. MovkMvc 에게 요청에 대한 정보를 입력(주입)
         this.mvc = mvc;
     }
 
