@@ -1,27 +1,23 @@
 package com.bitstudy.app.controller;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 /**     통합테스트로 변경해서 테스트 할 예정
- *
+ *      eX07_3_2 에서 마지막 영역만 추가됨
  * */
+
 /**
         슬라이스 테스트 : 기능별(레이어별) 잘라서 특정 부분(기능)만 테스트 할 수 있는 것
 
@@ -49,13 +45,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                              테스트 코드 내에서 Mock 서버를 띄울 수 있다.(response, request 에 대한 사전 정의가 가능)
  */
 //@WebMvcTest
-@Disabled("Spring Data Rest 통합테이터는 현재 불필요하므로 제외시킴")/* 클래스 레벨에 붙여서 해당 테스트 클래스 몯,ㅡㄴ 메서드들을 체크하지않게 한다
-이유는 테스트가 다 통과한걸 확인 하였고 당장 개발하는데 계속 ㅈ돌릴 필요가 없기 때문 */
 @SpringBootTest/* 이것만 있으면 MVC는 알아볼 수 없어 @AutoConfigureMockMvc 같이 넣기 */
 @AutoConfigureMockMvc
 //@DisplayName("Data REST - API 테스트")
 @Transactional/* 테스트를 돌리면 Hibernate 부분에 select 쿼리문이 나오면서 실제 DB를 건드는데 테스트 끝난 이후 DB를 롤백시키는 용도이다.*/
-public class DataRestTest {
+public class Ex07_3_3_DataRestTest_모든_테스트_완료 {
     /** MockMvc 테스트 방법
      1. MockMvc 생성(빈 준비)
      2. MovkMvc 에게 요청에 대한 정보를 입력(주입)
@@ -65,12 +59,11 @@ public class DataRestTest {
     private final MockMvc mvc;          //1. MockMvc 생성(빈 준비)
 
 
-    public DataRestTest(@Autowired MockMvc mvc) {  //2. MovkMvc 에게 요청에 대한 정보를 입력(주입)
+    public Ex07_3_3_DataRestTest_모든_테스트_완료(@Autowired MockMvc mvc) {  //2. MovkMvc 에게 요청에 대한 정보를 입력(주입)
         this.mvc = mvc;
     }
 
     // [api] - 게시글 리스트 전체 조회
-    @Disabled("구현중")
     @DisplayName("[api] - 게시글 리스트 전체 조회")
     @Test
     void articleAll() throws Exception {
