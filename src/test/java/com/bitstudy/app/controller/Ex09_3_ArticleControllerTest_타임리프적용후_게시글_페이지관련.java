@@ -7,7 +7,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -21,10 +20,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@WebMvcTest // 이렇게만 사용하면 모든 컨트롤러를 다 읽어들인다
 @WebMvcTest(ArticleController.class) // 지금은 컨트롤러 디렉토리에 파일이 하나만 있어 상관없지만 많아지면 모든 컨트롤러들을 Bean 으로 읽기때문에 이와같이 사용
 @DisplayName("view 컨트롤러 - 게시글")
-class ArticleControllerTest {
+class Ex09_3_ArticleControllerTest_타임리프적용후_게시글_페이지관련 {
     private final MockMvc mvc;
 
-    public ArticleControllerTest(@Autowired MockMvc mvc){
+    public Ex09_3_ArticleControllerTest_타임리프적용후_게시글_페이지관련(@Autowired MockMvc mvc){
         this.mvc = mvc;
     }
     /*

@@ -25,7 +25,7 @@ import java.util.List;
     */
 @Controller
 @RequestMapping("/articles") // 모든 경로들은 /articles 로 시작하니까 클래스 레벨에 1차로 @RequestMapping("/articles") 걸어놓음
-public class ArticleController {
+public class Ex08_4_ArticleController {
 
     @GetMapping
     public String articles(ModelMap map){
@@ -36,14 +36,6 @@ public class ArticleController {
         * ModelMap 은 클래스(구현체)*/
         map.addAttribute("articles", List.of());// 키: articles, 값 : 그냥 List
         return "articles/index";
-    }
-
-    @GetMapping("/{articleId}")
-    public String article(Long articleId, ModelMap map){
-        map.addAttribute("article",null); // 지금 당장은 받아오지 않기때문에 null 이라 넣었다만
-                                                                // 테스트 시에는 ㅜ머라도 문자열을 넣어줘서 모델에 담기도록 한다.
-        map.addAttribute("articleComment", List.of());
-        return "articles/detrail";
     }
 
 }
