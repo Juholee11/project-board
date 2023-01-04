@@ -38,4 +38,12 @@ public class ArticleController {
         return "articles/index";
     }
 
+    @GetMapping("/{articleId}")
+    public String article(Long articleId, ModelMap map){
+        map.addAttribute("article",null); // 지금 당장은 받아오지 않기때문에 null 이라 넣었다만
+                                                                // 테스트 시에는 ㅜ머라도 문자열을 넣어줘서 모델에 담기도록 한다.
+        map.addAttribute("articleComment", List.of());
+        return "articles/detrail";
+    }
+
 }
