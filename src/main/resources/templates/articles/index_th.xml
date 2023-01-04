@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<thlogic>
+    <attr sel="td.username" th:replace="header :: #header" />
+    <attr sel="td.usertype" th:replace="footer :: #footer" />
+
+</thlogic>
+<!-- 디커플드 조릭이 제대로 연결이 됐으면 ctrl + 파일명 클릭 시 정상이동  -->

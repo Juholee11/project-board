@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+<!--<html lang="en">-->
+<!-- 타임리프의 deCoupled 로직 적용하기
+      여기 파일을 다 HTML 로만 구성 -->
 <head>
+
     <meta charset="UTF-8">
     <title>게시판 페이지</title>
 </head>
@@ -9,7 +13,7 @@
       이 파일의 코드가 바뀔때마다 리컴파일 해주는걸 추천(Ctrl + Shift + F9), 혹시 안되면 ctrl + S 하고 리컴파일 재시도
     -->
 
-<header th:insert="~{header :: #header}"></header>
+<header id="header"></header>
 
   <main>
     <form action="#">
@@ -21,7 +25,7 @@
         <option value="">해시태그</option>
       </select>
 
-      <input type="search" placeholder="검색어를 입력하세요" name="search-value", id="search-value">
+      <input type="search" placeholder="검색어를 입력하세요" name="search-value" id="search-value">
 
       <button type="submit">검색</button>
     </form>
@@ -77,7 +81,7 @@
     </nav>
   </main>
 
-  <footer th:insert="~{header :: #header}"></footer>
+  <footer id="footer"></footer>
 
 </body>
 </html>
