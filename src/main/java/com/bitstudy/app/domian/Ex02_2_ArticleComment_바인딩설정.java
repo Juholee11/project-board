@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
 })
 @Getter
 @ToString
-@Entity
+//@Entity
 public class Ex02_2_ArticleComment_바인딩설정 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
