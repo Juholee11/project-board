@@ -35,7 +35,7 @@ import java.util.Set;
     @Index(columnList = "created_at"),
     @Index(columnList = "created_by")
 })
-@Entity
+//@Entity
 @Getter
 @ToString
 public class Ex06_1_Article_공통필드_분리하기 extends AuditingFields {

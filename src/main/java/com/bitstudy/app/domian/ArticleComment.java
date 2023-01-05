@@ -10,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /*  할일 : Lombok 사용하기
   ** 주의 : maven 때와 같은 방식인 것들도 이름이 다르게 되어있으니 헷갈리지않게 주의할 것
@@ -32,7 +33,7 @@ import java.time.LocalDateTime;
         @Index(columnList = "created_by")
 })
 @Getter
-@ToString
+@ToString(callSuper = true)
 @Entity
 public class ArticleComment extends AuditingFields {
     @Id
@@ -44,6 +45,9 @@ public class ArticleComment extends AuditingFields {
     private Article article; // Article 파일에 내용을 여기에 넣는 작업 article.id 이런식으로 가져다 쓸 수 있다
 //    @Setter @Column(nullable = false) private Long articleId;
 
+    @Setter
+    @ManyToOne(optional = false)
+    private UserAccount userAccount;
 
     @Setter
     @Column(nullable = false, length = 500)
@@ -62,4 +66,29 @@ public class ArticleComment extends AuditingFields {
 //
 //    @LastModifiedBy
 //    @Column(nullable = false, length = 100)private String modified_by; // 수정자
+
+
+    protected ArticleComment(){}
+
+    private ArticleComment(Article article, UserAccount userAccount, String content) {
+        this.article = article;
+        this.userAccount = userAccount;
+        this.content = content;
+    }
+    public static ArticleComment of(Article article, UserAccount userAccount, String content) {
+        return new ArticleComment(article, userAccount,content);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ArticleComment that = (ArticleComment) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

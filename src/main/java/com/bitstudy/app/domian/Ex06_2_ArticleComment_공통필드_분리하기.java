@@ -28,7 +28,7 @@ import javax.persistence.*;
 })
 @Getter
 @ToString
-@Entity
+//@Entity
 public class Ex06_2_ArticleComment_공통필드_분리하기 extends AuditingFields {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

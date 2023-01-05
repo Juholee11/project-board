@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
 })
 @Getter
 @ToString
-@Entity
+//@Entity
 public class Ex01_2_ArticleComment_엔티티로_변경 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

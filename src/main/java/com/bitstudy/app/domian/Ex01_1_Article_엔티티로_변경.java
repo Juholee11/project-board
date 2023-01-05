@@ -39,7 +39,7 @@ import java.util.Objects;
         @Index(columnList = "created_at"),
         @Index(columnList = "created_by")
 })
-@Entity /* 1. Lombok 을 이용해서 클래스를 엔티티로 변경 */
+//@Entity /* 1. Lombok 을 이용해서 클래스를 엔티티로 변경 */
 @Getter /* 2. Lombok 을 이용해서 @Getter 를 사용하면 알아서 모든 필드의 getter 가 생성된다 */
 @ToString /* 2. Lombok 을 이용해서 @ToString 를 사용하면 알아서 모든 필드의 toString 가 생성된다 */
 public class Ex01_1_Article_엔티티로_변경 {
