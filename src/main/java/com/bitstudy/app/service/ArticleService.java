@@ -25,6 +25,14 @@ public class ArticleService {
 
         return Page.empty();
     }
+    /** Page : 전체 데이터 건수 조회(데이터를 다 가지고 있다)
+            getTotalElements() : 개수 뽑기
+            getTotalPages() : 별도의 size 를 줘서 총 페이지 개수 구하기
+            getTotalNumber() : 가지고온 페이지 번호 뽑기
+
+    *  Pageable : 페이징 기능
+            JPA 에서 DB 쿼리 날릴때 limit 를 날려 데이터 가져오기
+    *  */
 
 
 }
