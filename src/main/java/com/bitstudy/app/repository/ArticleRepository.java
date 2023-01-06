@@ -4,6 +4,8 @@ import com.bitstudy.app.domian.Article;
 import com.bitstudy.app.domian.QArticle;
 import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -21,6 +23,13 @@ public interface ArticleRepository extends
     // 설명 : QuerydslPredicateExecutor 는 Article 안에 있는 모든 필드에 대한 기본 검색 기능을 추가해준다.
         //      순서
 
+    /** 제목으로 검색할때 */
+    Page<Article> findByTitleContaining(String title, Pageable pageable);
+
+    /** 내용으로 검색할때 */
+    /** id 으로 검색할때 */
+    /** 닉네임으로 검색할때 */
+    /** 해시태그으로 검색할때 */
 
 
     @Override
